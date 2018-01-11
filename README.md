@@ -19,6 +19,7 @@ Code developed as part of my dissertation at the University of Washington.
 - `plot_potential_core.m` - plots best-fit models for a potential core site and determines the height of 500-ka or 1-Ma ice above the bed
 
 ## allanhills/util
+- some of these scripts were authored by others
 
 ## allanhills/ages and allanhills/velocities
 - data files for age constraints from vertical and horizontal ice cores from [Spaulding et al [2013]](http://www.sciencedirect.com/science/article/pii/S003358941300080X) and for stake measurements from [Spaulding et al [2012]](https://www.igsoc.org/journal/58/208/j11j176.pdf)
