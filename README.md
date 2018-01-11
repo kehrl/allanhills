@@ -13,10 +13,10 @@ Code developed as part of my dissertation at the University of Washington.
 ## allanhills/scripts
 - `grinsted_mode.m` - runs a model developed by [Grinsted et al [2003]](http://onlinelibrary.wiley.com/doi/10.1029/2003GL017957/full) for various combinations of snow accumulation rate and surface velocity decreases during glacial periods, calculates the misfit between the model and the dated isochrones, and plots the results
 - `make_plots.m` - loads, processes, and plots the radar observations, age constraints, and surface velocities 
--`internal_stratigraphy.m` - calculates the height above the bed for different dated isochrones and creates a 3D plot to look at the 3D internal stratigraphy
--`layer_differences.m` - calculates layer thickness anomalies along a radar profile
--`load_picked_layers.m` - example code for loading picked layers from spicker using `load_splayer.m`
--`plot_potential_core.m` - plots best-fit models for a potential core site and determines the height of 500-ka or 1-Ma ice above the bed
+- `internal_stratigraphy.m` - calculates the height above the bed for different dated isochrones and creates a 3D plot to look at the 3D internal stratigraphy
+- `layer_differences.m` - calculates layer thickness anomalies along a radar profile
+- `load_picked_layers.m` - example code for loading picked layers from spicker using `load_splayer.m`
+- `plot_potential_core.m` - plots best-fit models for a potential core site and determines the height of 500-ka or 1-Ma ice above the bed
 
 ## allanhills/util
 
