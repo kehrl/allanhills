@@ -3,7 +3,7 @@ Scripts and utilities for assessing the potential for a million-year-old ice-cor
 
 Code developed as part of my dissertation at the University of Washington.
 
-## Dependencies
+## Code and data dependencies
 - Matlab toolboxes, including [Antarctic Mapping Tools](https://www.mathworks.com/matlabcentral/fileexchange/47638-antarctic-mapping-tools), [Cubehelix](https://www.mathworks.com/matlabcentral/fileexchange/43700-cubehelix-colormaps--beautiful--distinct--versatile-), [BedMap2](https://www.mathworks.com/matlabcentral/fileexchange/42353-bedmap2-toolbox-for-matlab), [Antarctic Drainage Basins](https://www.mathworks.com/matlabcentral/fileexchange/47639-antarctic-drainage-basins), [Antarctic boundaries, grounding line, and masks from InSAR](https://www.mathworks.com/matlabcentral/fileexchange/60246-antarctic-boundaries--grounding-line--and-masks-from-insar), and [export_fig](https://www.mathworks.com/matlabcentral/fileexchange/23629-export-fig)
 - Processed ice-penetrating radar data (`track1_all.mat`, `track2_all.mat`, `track3_all.mat`, `track4_all.mat`, `crosstracks.mat`, `BIT58_2.mat`) is available at the [US Antarctic Program Data Center](http://www.usap-dc.org/view/dataset/601005)
 
