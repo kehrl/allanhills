@@ -1,4 +1,5 @@
 grinsted*.mat
 RMSE*.txt
+*.m~
 *.pdf
 EPICA*
