@@ -3,7 +3,7 @@
 % Laura Kehrl, UW, 01/09/2018
 
 %% Get location of potential core
-potential_core_dists = 14e3;
+potential_core_dists = 16e3;
 
 % Get location
 [~,ind_core] = min(abs(potential_core_dists-dist));
@@ -96,13 +96,14 @@ set(gcf,'pos',[0 0 2 3.6],'color','white');
 
 [x,y,Z] = bedmap2_data('bedw',[500000 520000 520000 500000],[-1300000 -1400000 -1400000 -1300000],'xy');
 [c,ch] = contour(x/1e3,y/1e3,Z,[1000:100:2000],'k'); hold on;
+set(gca,'fontsize',6,'fontname','arial');
 
 scatter(layerdepth(:,1)/1e3,layerdepth(:,2)/1e3,5,layerdepth(:,4)-layerdepth(:,5)); hold on;
 set(gca,'clim',[350,650]);
 colormap(flipud(cubehelix([],0.6,-0.9,1.9,1.1,[0,0.8],[0,0.9])))
 h = colorbar('southoutside');
 xlabel(h,{'Height of 105-ka ice','above bed (m)'},'fontsize',8,'fontname','Arial');
-set(h,'ticklength',[0.12 0.12]);
+set(h,'ticklength',[0.12 0.12],'fontsize',8);
 pos = get(h,'position');
 set(h,'position',[pos(1)+0.17 pos(2)-0.02 pos(3)-0.19 pos(4)*0.5]);
 
@@ -110,17 +111,18 @@ axis equal
 plot(xtrack(ind_core)/1e3,ytrack(ind_core)/1e3,'kp','markerfacecolor','r','markersize',10)
 set(gca,'ticklength',[0.02 0.02]);
 
+text(512.5,-1343.8,'d','fontsize',10,'fontweight','bold','fontname','arial');
 text(510.6,-1354,'Northing (km)','rotation',90,'fontsize',8,'fontname','arial')
 %text(511.6,-1361,'-1360','rotation',90,'fontsize',6,'fontname','arial')
 text(511.6,-1356,'-1355','rotation',90,'fontsize',6,'fontname','arial')
 text(511.6,-1351,'-1350','rotation',90,'fontsize',6,'fontname','arial')
 text(511.6,-1346,'-1345','rotation',90,'fontsize',6,'fontname','arial')
 
-
 xlim([min(layerdepth(:,1))/1e3,max(layerdepth(:,1))/1e3+1]);
 ylim([min(layerdepth(:,2))/1e3+2.5,max(layerdepth(:,2))/1e3-1.5]);
 xlabel('Easting (km)','fontsize',8,'fontname','arial');
-set(gca,'fontsize',6,'fontname','arial');
+tl = clabel(c,ch,'manual','fontsize',7,'fontname','arial','labelspacing',500);
+
 pos = get(gca,'Position');
 set(gca,'Position',[pos(1)+0.05 pos(2)+0.18 pos(3)+0.15 pos(4)-0.18]);
 set(gca,'xtick',[512:2:518])

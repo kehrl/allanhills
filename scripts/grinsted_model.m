@@ -10,8 +10,8 @@
 %bdot_constant = 0.009; %mm/yr we
 %us_constant = 0.25;
 
-bdot_constants = [0.01];%:0.0005:0.011];
-us_constants = 0.3;%[0.0:0.10:1.00];
+bdot_constants = [0.007];%:0.0005:0.011];
+us_constants = 0.8;%[0.0:0.10:1.00];
 
 enhanced_bdot = 0;
 save_rmse_file = 0;
@@ -77,7 +77,7 @@ k = 5;
 
 % Grid spacing
 dx = 250;
-dy = 0.01;
+dy = 0.001;
 
 % Normalized vertical direction
 zbar = 0:dy:1.0;
@@ -518,7 +518,7 @@ end
 pcolor((fliplr(distdata)+dist_offset)/1e3,zdata,filtdata); hold on;
 shading interp;
 set(gca,'clim',[-0.0015 0.0015]);
-colormap(bone);
+colormap(flipud(colormap(bone)));
 freezeColors;
 if strcmp(flowline,'track4')
     for i = 1:length(track4.layages)
@@ -764,7 +764,7 @@ if enhanced_bdot
     'pt23','pt24','ages','Us','bdot','zbar','zs_x','dt','dx','dy','dist_offset','flowline');
 
 else
-    save(fullfile(REPO_HOME,sprintf('matfiles/grinsted_us%03d_bdot%02dmm.mat',...
+    save(fullfile(REPO_HOME,sprintf('grinsted_matfiles/grinsted_us%03d_bdot%02dmm_highres.mat',...
     us_constant*100,bdot_constant*1000)),...
     'RMSE_TOTAL','x','H_ice','H_we','grinsted_layers','grinsted_layers_ages','us_constant',...
     'bdot_constant','xtrack','ytrack','zs_grid','zs_ages','pt17','pt18','pt19','pt20','pt21','pt22',...

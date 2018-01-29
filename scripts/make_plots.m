@@ -337,7 +337,7 @@ end
 figure('units','inches');
 hold off;
 pos = get(gcf,'pos');
-set(gcf,'pos',[0 0 4.8 2.3],'color','white')
+set(gcf,'pos',[0 0 3.25 2.0],'color','white')
 % Plot radar track4
 uimagesc(distdata/1e3,zdata,filtdata,[-0.0015,0.0015]); hold on;
 colormap(flipud(colormap('bone')));
@@ -356,13 +356,13 @@ text(dist_S27_track4-0.4,1600,'S27','fontsize',8,'fontname','Arial','backgroundc
 surf = interp1(distdata,track4.Height4_all,dist_S27_surface_core_track4);
 plot(dist_S27_surface_core_track4/1e3,surf,'ko','markerfacecolor','r','markersize',4);
 % Legend
-rectangle('Position',[0.25,850,3.7,250],'facecolor','w','edgecolor','k');
+rectangle('Position',[0.25,850,5.0,250],'facecolor','w','edgecolor','k');
 %plot([0.4,0.7],[780,780],'b','linewidth',2)
 %text(0.9,780,'Tephra layer','fontsize',8,'fontname','arial');
-plot(0.5,930,'ko','markerfacecolor','r','markersize',4)
-text(0.9,930,'Surface age','fontsize',8,'fontname','arial');
-plot([0.4,0.7],[1040,1040],'k','linewidth',2)
-text(0.9,1040,'S27 core','fontsize',8,'fontname','arial');
+plot(0.6,930,'ko','markerfacecolor','r','markersize',4)
+text(1.0,930,'Surface age','fontsize',8,'fontname','arial');
+plot([0.5,0.8],[1040,1040],'k','linewidth',2)
+text(1.0,1040,'S27 core','fontsize',8,'fontname','arial');
 ylabel('Elevation (m)','fontsize',8,'fontname','Arial');
 text(0.4,780,'4','fontsize',8,'fontname','Arial','fontweight','bold')
 text(13.8,780,'4''','fontsize',8,'fontname','Arial','fontweight','bold')
@@ -370,7 +370,7 @@ ylim([700 2200]);
 %text(dist_bigblack_track4-0.04,-50,'115 ka','fontsize',8,'fontname','Arial','rotation',30);
 %text(dist_bit16_track4-0.04,-50,'205 ka','fontsize',8,'fontname','Arial','rotation',30);
 pos = get(gca,'pos');
-set(gca,'pos',[0.1358 0.1307 0.6486 0.7443]);
+set(gca,'pos',[pos(1) pos(2) pos(3)+0.005 pos(4)]);
 set(gca,'fontsize',8,'fontname','arial')
 set(gca,'xtick',[0:4:16])
 set(gca,'ticklength',[0.02,0.05])
@@ -383,7 +383,7 @@ close;
 figure('units','inches');
 hold off;
 pos = get(gcf,'pos');
-set(gcf,'pos',[0 0 4.8 2.3],'color','white')
+set(gcf,'pos',[0 0 3.25 2.6],'color','white')
 % Plot radar track4
 uimagesc(distdata/1e3,zdata,filtdata,[-0.0015,0.0015]); hold on;
 colormap(flipud(colormap('bone')));
@@ -406,15 +406,17 @@ ylabel('Elevation (m)','fontsize',8,'fontname','Arial');
 text(0.4,780,'4','fontsize',8,'fontname','Arial','fontweight','bold')
 text(13.8,780,'4''','fontsize',8,'fontname','Arial','fontweight','bold')
 ylim([700 2200]);
-colormap(gca,cm); set(gca,'clim',[80 260]); h = colorbar; 
-set(get(h,'title'),'string','Age (ka)','fontsize',8,'fontname','arial')
-pos = get(get(h,'title'),'position');
-set(get(h,'title'),'position',[pos(1)+1 pos(2) pos(3)])
-set(h,'ticklength',[0.02 0.05])
+colormap(gca,cm); set(gca,'clim',[80 260]); 
+h = colorbar('southoutside'); 
+
+xlabel(h,'Age (ka)','fontsize',8,'fontname','Arial');
+set(h,'ticklength',[0.06 0.06])
+pos=get(h,'pos')
+set(h,'position',[pos(1) pos(2)-0.09 pos(3)-0.005 pos(4)*0.7]);
 pos = get(gca,'pos');
-set(gca,'pos',[pos(1) pos(2)-0.05 pos(3)+0.03 pos(4)]);
-pos = get(h,'pos');
-set(h,'pos',[pos(1) pos(2)-0.04 pos(3) pos(4)-0.01]);
+set(gca,'pos',[pos(1) pos(2)+0.18 pos(3)+0.01 pos(4)-0.175]);
+%pos = get(h,'pos');
+%set(h,'pos',[pos(1) pos(2)-0.04 pos(3) pos(4)-0.01]);
 set(gca,'fontsize',8,'fontname','arial')
 set(gca,'xtick',[0:4:16])
 set(gca,'ticklength',[0.02,0.05])
@@ -484,18 +486,18 @@ if plot_trackA
     set(get(h,'title'),'string','Age (ka)')
     plot(trackA.Distance(1:length(trackA.thick))/1e3,trackA.thick,'k--','linewidth',2);
     % Plot intersecting transects
-    %[~,ind] = min(sqrt((trackA.X-trackA.interx_track1B(1)).^1+(trackA.Y-trackA.interx_track1B(2)).^2));
-    %plot([trackA.Distance(ind),trackA.Distance(ind)]/1e3,[0,trackA.z_out(end)],'k:','linewidth',1);
-    %text(trackA.Distance(ind)/1e3-0.02,-50,'1','fontsize',8,'fontname','Arial');
-    %[~,ind] = min(sqrt((trackA.X-trackA.interx_track2(1)).^2+(trackA.Y-trackA.interx_track2(2)).^2));
-    %plot([trackA.Distance(ind),trackA.Distance(ind)]/1e3,[0,trackA.z_out(end)],'k:','linewidth',1);
-    %text(trackA.Distance(ind)/1e3-0.02,-50,'2','fontsize',8,'fontname','Arial');
-    %[~,ind] = min(sqrt((trackA.X-trackA.interx_track3(1)).^2+(trackA.Y-trackA.interx_track3(2)).^2));
-    %plot([trackA.Distance(ind),trackA.Distance(ind)]/1e3,[0,trackA.z_out(end)],'k:','linewidth',1);
-    %text(trackA.Distance(ind)/1e3-0.02,-50,'3','fontsize',8,'fontname','Arial');
-    %[~,ind] = min(sqrt((trackA.X-trackA.interx_track4(1)).^2+(trackA.Y-trackA.interx_track4(2)).^2));
-    %plot([trackA.Distance(ind),trackA.Distance(ind)]/1e3,[0,trackA.z_out(end)],'k:','linewidth',1);
-    %text(trackA.Distance(ind)/1e3-0.02,-50,'4','fontsize',8,'fontname','Arial');
+    [~,ind] = min(sqrt((trackA.X-trackA.interx_track1B(1)).^1+(trackA.Y-trackA.interx_track1B(2)).^2));
+    plot([trackA.Distance(ind),trackA.Distance(ind)]/1e3,[0,trackA.z_out(end)],'k:','linewidth',1);
+    text(trackA.Distance(ind)/1e3-0.02,-50,'1','fontsize',8,'fontname','Arial');
+    [~,ind] = min(sqrt((trackA.X-trackA.interx_track2(1)).^2+(trackA.Y-trackA.interx_track2(2)).^2));
+    plot([trackA.Distance(ind),trackA.Distance(ind)]/1e3,[0,trackA.z_out(end)],'k:','linewidth',1);
+    text(trackA.Distance(ind)/1e3-0.02,-50,'2','fontsize',8,'fontname','Arial');
+    [~,ind] = min(sqrt((trackA.X-trackA.interx_track3(1)).^2+(trackA.Y-trackA.interx_track3(2)).^2));
+    plot([trackA.Distance(ind),trackA.Distance(ind)]/1e3,[0,trackA.z_out(end)],'k:','linewidth',1);
+    text(trackA.Distance(ind)/1e3-0.02,-50,'3','fontsize',8,'fontname','Arial');
+    [~,ind] = min(sqrt((trackA.X-trackA.interx_track4(1)).^2+(trackA.Y-trackA.interx_track4(2)).^2));
+    plot([trackA.Distance(ind),trackA.Distance(ind)]/1e3,[0,trackA.z_out(end)],'k:','linewidth',1);
+    text(trackA.Distance(ind)/1e3-0.02,-50,'4','fontsize',8,'fontname','Arial');
     text(0.05,1200,'A','fontsize',12,'fontname','Arial')
     text(2.5,1200,'A''','fontsize',12,'fontname','Arial')
     ylim([0 1250]);
@@ -1471,17 +1473,17 @@ text(502900,-1363200+19.5e3,'Velocity (0.2 m/a)','fontsize',8,'fontname','Arial'
 plot([501400,502500],[-1363200+18.5e3,-1363200+18.5e3],'-','color','k','linewidth',2)
 text(502900,-1363200+18.5e3,'Radar','fontsize',8,'fontname','Arial');
 plot(501900,-1363200+17.5e3,'ko','markerfacecolor','r','markersize',4);
-text(502900,-1363200+17.5e3,'Deep core','fontsize',8,'fontname','Arial');
+text(502900,-1363200+17.5e3,'Ice core','fontsize',8,'fontname','Arial');
 plot(501900,-1363200+16.5e3,'o','color','b','markersize',4);
 text(502900,-1363200+16.5e3,'Stake','fontsize',8,'fontname','Arial');
-text(501000,-1363200+23.5e3,'a','fontsize',10,'fontname','Arial','fontweight','bold');
+text(501000,-1363200+23.9e3,'a','fontsize',10,'fontname','Arial','fontweight','bold');
 
 mapzoomps('Allan Hills','sw','insetsize',0.4);
 
 % Add contour labels
 %text(514.8e3,-1342.4e3,'2100 m','rotation',65,'fontsize',7,'fontname','arial')
-%tl = clabel(c,hc,[1900:50:2200],'fontsize',7,'fontname','arial','labelspacing',500);
-%tl = clabel(c,hc,'manual','fontsize',7,'fontname','arial','labelspacing',500);
+%tl = clabel(c,hc,[1900:50:2200],'fontsize',7,'fontname','arial','labelspacing',380);
+tl = clabel(c,hc,'manual','fontsize',7,'fontname','arial','labelspacing',500);
 
 
 export_fig(fullfile(REPO_HOME,'figures/ahills_basemap.pdf'),'-painters',...
