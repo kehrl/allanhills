@@ -4,16 +4,16 @@
 %
 % Laura Kehrl, UW, 10/01/2017
 
-us030bdot10mm = load(fullfile(REPO_HOME,'grinsted_matfiles/grinsted_us030_bdot10mm.mat'));
-us050bdot09mm = load(fullfile(REPO_HOME,'grinsted_matfiles/grinsted_us050_bdot09mm.mat'));
-us060bdot08mm = load(fullfile(REPO_HOME,'grinsted_matfiles/grinsted_us060_bdot08mm.mat'));
-us080bdot07mm = load(fullfile(REPO_HOME,'grinsted_matfiles/grinsted_us080_bdot07mm.mat'));
+us030bdot10mm = load(fullfile(REPO_HOME,'grinsted_matfiles/grinsted_us030_bdot10mm_highres.mat'));
+us050bdot09mm = load(fullfile(REPO_HOME,'grinsted_matfiles/grinsted_us050_bdot09mm_highres.mat'));
+us060bdot08mm = load(fullfile(REPO_HOME,'grinsted_matfiles/grinsted_us060_bdot08mm_highres.mat'));
+us080bdot07mm = load(fullfile(REPO_HOME,'grinsted_matfiles/grinsted_us080_bdot07mm_highres.mat'));
 
 models = ['us080bdot07mm';'us060bdot08mm';'us050bdot09mm';'us030bdot10mm'];
 
 %% Plot potential cores
 %potential_core_dists = 10e3+dist_offset;
-potential_core_dists = 14e3;
+potential_core_dists = 16.0e3;
 
 fig1=figure('units','inches');
 clear h
@@ -35,10 +35,31 @@ for i=1:length(potential_core_dists)
         hold on;
         interped = interp1((1-zbar(2:end))*H_ice(ind1),ages(2:end,ind1)/1e3,track1B.layheights(:,ind3));
         rmse=sqrt(nanmean((interped-track1B.layages).^2));
-        [~,ind] = min(abs(ages(:,ind1)-1e6));
-        ma = H_ice(ind1)-interp1(ages(2:end,ind1)/1e3,(1-zbar(2:end))*H_ice(ind1),1001);
-        halfma = H_ice(ind1)-interp1(ages(2:end,ind1)/1e3,(1-zbar(2:end))*H_ice(ind1),999);
-        rate = 2/(halfma-ma)
+        age1 = 260e3;
+        age2 = 240e3;
+        [~,closeind] = min(abs(ages(:,ind1)-age1));
+        if ages(closeind,ind1) < age1
+            closeind1 = closeind-1;
+            closeind2 = closeind;
+        else
+            closeind1 = closeind;
+            closeind2 = closeind+1;
+        end
+        ma(i) = H_ice(ind1)-interp1(ages(closeind1:closeind2,ind1),(1-zbar(closeind1:closeind2))*H_ice(ind1),age1);
+        [~,closeind] = min(abs(ages(:,ind1)-age2));
+        if ages(closeind,ind1) < age2
+            closeind1 = closeind-1;
+            closeind2 = closeind;
+        else
+            closeind1 = closeind;
+            closeind2 = closeind+1;
+        end
+        halfma(i) = H_ice(ind1)-interp1(ages(closeind1:closeind2,ind1),(1-zbar(closeind1:closeind2))*H_ice(ind1),age2);
+        
+        % Only works if it is monotonically increasing
+        %ma = H_ice(ind1)-interp1(ages(3:end,ind1)/1e3,(1-zbar(2:end))*H_ice(ind1),751);
+        %halfma = H_ice(ind1)-interp1(ages(2:end,ind1)/1e3,(1-zbar(2:end))*H_ice(ind1),749);
+        rate(j) = 20/(halfma-ma);
     end
     plot(track1B.layages,track1B.layheights(:,ind3),'k.','markersize',15);    
     xlabel('Age (ka)','fontsize',8,'fontname','Arial');
@@ -106,7 +127,7 @@ close;
 
 %% Get depth of 1 Ma ice across basin for different model runs
 
-age=1e6;
+age=1000e3;
 
 fig = figure('units','inches');
 pos = get(gcf,'pos');
@@ -126,7 +147,11 @@ for j = 1:size(models,1)
                 ind2 = ind1;
                 ind1 = ind2+1;
             end
-            z1ma(i) = interp1(ages(ind2:ind1,i),(zbar(ind2:ind1))*H_ice(i),age);
+            if ages(ind2,i)==ages(ind1,i)
+                z1ma(i) = (zbar(ind2)+zbar(ind1))/2*H_ice(i);
+            else
+                z1ma(i) = interp1(ages(ind2:ind1,i),(zbar(ind2:ind1))*H_ice(i),age);
+            end
         end
     end
     plot((x)/1e3,z1ma,'-','color',colors(j,:),'linewidth',1.25);
