@@ -482,7 +482,7 @@ set(ax(2),'ycolor','r','xlim',[(x(1))/1e3,(x(end))/1e3],'xtick',[-4:4:25]);
 plot(ax(1),(x_pts(1:end-1))/1e3,Us_pts(1:end-1),'ko','markerfacecolor','b','markersize',4);
 ind = find(bdot_pts < 0);
 plot(ax(2),(x_pts(ind))/1e3,bdot_pts(ind)*1000,'ko','markerfacecolor','r','markersize',4);
-axes(ax(1)); ylabel('{\it{U_s}} (m/a)','fontsize',8,'fontname','Arial');
+axes(ax(1)); ylabel('{\it{u_s}} (m/a)','fontsize',8,'fontname','Arial');
 axes(ax(2)); ylabel({'{\it{b}}';'(mmWE/a)   '},'fontsize',8,'fontname','Arial');
 text(22.2+dist_offset/1e3,11,'.','color','r','fontsize',8,'fontname','Arial');
 pos = get(gca,'pos');
@@ -805,7 +805,7 @@ if plot_rmse
     h = colorbar; set(h,'fontsize',8,'fontname','Arial');
     set(get(h,'title'),'string','Misfit (ka)','fontsize',8,'fontname','Arial')
     set(h,'ticklength',[0.1 0.1])
-    xlabel('Accumulation rate ({\it{b}}; mmWE/a)','fontsize',8,'fontname','arial');
+    xlabel('Present-day accumulation rate ({\it{b_o}}; mmWE/a)','fontsize',8,'fontname','arial');
     set(gca,'xtick',bdot_constants*1000);
     set(gca,'ytick',us_constants);
     gpos = get(gca,'position');
@@ -815,7 +815,7 @@ if plot_rmse
     ylabel({'Ratio of glacial to';' present-day velocities (\it{r})'},'fontsize',8,'fontname','arial');
     set(gca,'ticklength',[0.020,0.05])
     text(4.9,0.02,'a','fontweight','bold','fontsize',10,'fontname','arial');
-    text(10.34,-0.148,'.','fontsize',8,'fontname','arial');
+    text(11.6,-0.13,'.','fontsize',8,'fontname','arial');
 
     export_fig(fullfile(REPO_HOME,'figures/rmse.pdf'),'-zbuffer','-nofontswap','-r600','-p0.01');
     close;

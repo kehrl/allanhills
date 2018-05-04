@@ -27,3 +27,11 @@ Code developed as part of my dissertation at the University of Washington.
 
 ## allanhills/pickedlayers
 - picked radar layers, which are loaded in other scripts
+
+## Resulting Publications
+[Kehrl, L., H. Conway, N. Holschuh, S. Campbell, A.V. Kurbatov, and N.E. Spaulding. 2018. Evaluating the duration and continuity of potential climate records from the Allan Hills Blue Ice Area, East Antarctica. Geophysical Research Letters, 45, doi:10.1002/2018GL077511](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2018GL077511)
+- Figure 1a, 1b, 1c: [allanhills/scripts/make_plots.m](https://github.com/kehrl/allanhills/blob/master/scripts/make_plots.m)
+- Figure 1d: [allanhills/scripts/internal_stratigraphy.m](https://github.com/kehrl/allanhills/blob/master/scripts/internal_stratigraphy.m)
+- Figure 2, 3a, 4b, 4d: [allanhills/scripts/grinsted_model.m](https://github.com/kehrl/allanhills/blob/master/scripts/grinsted_model.m)
+- Figure 3b: [allanhills/scripts/plot_potential_core.m](https://github.com/kehrl/allanhills/blob/master/scripts/plot_potential_core.m)
+- Figure 4a, 4c: [allanhills/scripts/layer_differences.m](https://github.com/kehrl/allanhills/blob/master/scripts/layer_differences.m)

@@ -77,19 +77,19 @@ for i=1:length(potential_core_dists)
     set(gca,'ticklength',[0.035 0.07])
 end
 %h=legend('{\it{b}}=7,   {\it{r}}=0.8','{\it{b}}=8,   {\it{r}}=0.6','{\it{b}}=9,   {\it{r}}=0.5','{\it{b}}=10, {\it{r}}=0.3','location','northwest');
-rectangle('Position',[80,20,570,300],'facecolor','w','edgecolor','k');
-plot([100,180],[65,65],'k','linewidth',1.25)
-text(190,65,'{\it{b}} =   7 mmWE/a, {\it{r}} = 0.8','fontsize',8,'fontname','arial');
-text(205,25,'.','fontsize',8,'fontname','arial');
-plot([100,180],[135,135],'r','linewidth',1.25)
-text(190,135,'{\it{b}} =   8 mmWE/a, {\it{r}} = 0.6','fontsize',8,'fontname','arial');
-text(205,95,'.','fontsize',8,'fontname','arial');
-plot([100,180],[205,205],'b','linewidth',1.25)
-text(190,205,'{\it{b}} =   9 mmWE/a, {\it{r}} = 0.5','fontsize',8,'fontname','arial');
-text(205,165,'.','fontsize',8,'fontname','arial');
-plot([100,180],[275,275],'color',[0 0.5 0],'linewidth',1.25)
-text(190,275,'{\it{b}} = 10 mmWE/a, {\it{r}} = 0.3','fontsize',8,'fontname','arial');
-text(205,235,'.','fontsize',8,'fontname','arial');
+rectangle('Position',[80,20,580,355],'facecolor','w','edgecolor','k');
+plot([100,170],[65,65],'k','linewidth',1.25)
+text(180,85,'{\it{b_o}} =   7 mmWE/a, {\it{r}} = 0.8','fontsize',8,'fontname','arial');
+text(195,20,'.','fontsize',8,'fontname','arial');
+plot([100,170],[145,145],'r','linewidth',1.25)
+text(180,170,'{\it{b_o}} =   8 mmWE/a, {\it{r}} = 0.6','fontsize',8,'fontname','arial');
+text(195,105,'.','fontsize',8,'fontname','arial');
+plot([100,170],[235,235],'b','linewidth',1.25)
+text(180,255,'{\it{b_o}} =   9 mmWE/a, {\it{r}} = 0.5','fontsize',8,'fontname','arial');
+text(195,190,'.','fontsize',8,'fontname','arial');
+plot([100,170],[320,320],'color',[0 0.5 0],'linewidth',1.25)
+text(180,340,'{\it{b_o}} = 10 mmWE/a, {\it{r}} = 0.3','fontsize',8,'fontname','arial');
+text(195,275,'.','fontsize',8,'fontname','arial');
 text(25,1130,'b','fontsize',10,'fontname','arial','fontweight','bold');
 
 
@@ -127,7 +127,7 @@ close;
 
 %% Get depth of 1 Ma ice across basin for different model runs
 
-age=1000e3;
+age=500e3;
 
 fig = figure('units','inches');
 pos = get(gcf,'pos');
@@ -160,7 +160,8 @@ end
 xlabel('{\it{x}} (km)','fontsize',8,'fontname','arial')
 set(gca,'xtick',[-4:4:20]);
 xlim([0,20])
-legend('{\it{b}}=7,   {\it{r}}=0.8','{\it{b}}=8,   {\it{r}}=0.6','{\it{b}}=9,   {\it{r}}=0.5','{\it{b}}=10, {\it{r}}=0.3','location','southeast');
+%legend('{\it{b_o}}=7,   {\it{r}}=0.8','{\it{b_o}}=8,   {\it{r}}=0.6','{\it{b_o}}=9,   {\it{r}}=0.5','{\it{b_o}}=10, {\it{r}}=0.3','location','southeast');
+
 set(gca,'fontsize',8,'fontname','arial')
 if age == 1e6
     ylabel('Height of 1-Ma ice above bed (m)','fontsize',8,'fontname','arial');
@@ -169,6 +170,22 @@ if age == 1e6
 else
     ylim([0,75])
     ylabel('Height of 500-ka ice above bed (m)','fontsize',8,'fontname','arial');
+    
+    rectangle('Position',[8,2,11.5,21.5],'facecolor','w','edgecolor','k');
+    plot([8.5,10],[20,20],'k','linewidth',1.25)
+    text(10.2,19,'{\it{b_o}} =   7 mmWE/a, {\it{r}} = 0.8','fontsize',8,'fontname','arial');
+    text(10.5,23,'.','fontsize',8,'fontname','arial');
+    plot([8.5,10],[15,15],'r','linewidth',1.25)
+    text(10.2,14,'{\it{b_o}} =   8 mmWE/a, {\it{r}} = 0.6','fontsize',8,'fontname','arial');
+    text(10.5,18,'.','fontsize',8,'fontname','arial');
+    plot([8.5,10],[10,10],'b','linewidth',1.25)
+    text(10.2,9,'{\it{b_o}} =   9 mmWE/a, {\it{r}} = 0.5','fontsize',8,'fontname','arial');
+    text(10.5,13,'.','fontsize',8,'fontname','arial');
+    plot([8.5,10],[5,5],'color',[0 0.5 0],'linewidth',1.25)
+    text(10.2,4,'{\it{b_o}} = 10 mmWE/a, {\it{r}} = 0.3','fontsize',8,'fontname','arial');
+    text(10.5,8,'.','fontsize',8,'fontname','arial');
+    text(25,1130,'b','fontsize',10,'fontname','arial','fontweight','bold');
+    
     text(-4+dist_offset/1e3,71,'a','fontsize',8,'fontname','arial','fontweight','bold');
     export_fig(fullfile(REPO_HOME,'figures/depthto500ka.pdf'),'-painters','-r600','-p0.01','-transparent','-nofontswap');
 end

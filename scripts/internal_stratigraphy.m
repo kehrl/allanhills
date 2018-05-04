@@ -111,7 +111,7 @@ axis equal
 plot(xtrack(ind_core)/1e3,ytrack(ind_core)/1e3,'kp','markerfacecolor','r','markersize',10)
 set(gca,'ticklength',[0.02 0.02]);
 
-text(512.5,-1343.8,'d','fontsize',10,'fontweight','bold','fontname','arial');
+text(512.4,-1343.6,'d','fontsize',10,'fontweight','bold','fontname','arial');
 text(510.6,-1354,'Northing (km)','rotation',90,'fontsize',8,'fontname','arial')
 %text(511.6,-1361,'-1360','rotation',90,'fontsize',6,'fontname','arial')
 text(511.6,-1356,'-1355','rotation',90,'fontsize',6,'fontname','arial')

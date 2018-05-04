@@ -328,7 +328,7 @@ filtdata(:,:) = nan;
 ind = find(track4.z_out ~= 0);
 for i=1:length(track4.Distance_total4_all)
     [~,j] = min(abs(track4.Height4_all(i)-track4.thick(i)-zdata));
-	filtdata(1:end,i) = interp1(track4.Height4_all(i)-track4.z_out(ind-1:end),track4.filtdata4_all(ind-1:end,i),zdata(1:end)); 
+	filtdata(1:end,length(track4.Distance_total4_all)+1-i) = interp1(track4.Height4_all(i)-track4.z_out(ind-1:end),track4.filtdata4_all(ind-1:end,i),zdata(1:end)); 
 end
 %ind = find(isnan(filtdata));
 %fildata(ind) = -1e3;
@@ -348,24 +348,24 @@ freezeColors('nancolor',[1 1 1]);
 hold on;
 % Plot S27
 surf = interp1(distdata,track4.Height4_all,dist_S27_track4*1e3);
-plot([dist_S27_track4,dist_S27_track4],[surf,surf-max(S27_vertical_core.data(:,2))],'k','linewidth',2);
-text(dist_S27_track4-0.4,1600,'S27','fontsize',8,'fontname','Arial','backgroundcolor','w');
+plot([track4.Distance_total4_all(end)/1e3-dist_S27_track4,track4.Distance_total4_all(end)/1e3-dist_S27_track4],[surf,surf-max(S27_vertical_core.data(:,2))],'k','linewidth',2);
+text(track4.Distance_total4_all(end)/1e3-dist_S27_track4-0.4,1600,'S27','fontsize',8,'fontname','Arial','backgroundcolor','w');
 %plot([dist_bigblack_track4,dist_bigblack_track4],[-20,60],'b','linewidth',2);
 %plot([dist_bit16_track4,dist_bit16_track4],[-20,60],'b','linewidth',2);
 % Plot S27 surface ages from Table 5
 surf = interp1(distdata,track4.Height4_all,dist_S27_surface_core_track4);
-plot(dist_S27_surface_core_track4/1e3,surf,'ko','markerfacecolor','r','markersize',4);
+plot(track4.Distance_total4_all(end)/1e3-dist_S27_surface_core_track4/1e3,surf,'ko','markerfacecolor','r','markersize',4);
 % Legend
-rectangle('Position',[0.25,850,5.0,250],'facecolor','w','edgecolor','k');
+rectangle('Position',[9.4,850,4.8,250],'facecolor','w','edgecolor','k');
 %plot([0.4,0.7],[780,780],'b','linewidth',2)
 %text(0.9,780,'Tephra layer','fontsize',8,'fontname','arial');
-plot(0.6,930,'ko','markerfacecolor','r','markersize',4)
-text(1.0,930,'Surface age','fontsize',8,'fontname','arial');
-plot([0.5,0.8],[1040,1040],'k','linewidth',2)
-text(1.0,1040,'S27 core','fontsize',8,'fontname','arial');
+plot(9.75,930,'ko','markerfacecolor','r','markersize',4)
+text(10.2,930,'Surface age','fontsize',8,'fontname','arial');
+plot([9.6,9.9],[1040,1040],'k','linewidth',2)
+text(10.2,1040,'S27 core','fontsize',8,'fontname','arial');
 ylabel('Elevation (m)','fontsize',8,'fontname','Arial');
-text(0.4,780,'4','fontsize',8,'fontname','Arial','fontweight','bold')
-text(13.8,780,'4''','fontsize',8,'fontname','Arial','fontweight','bold')
+text(13.8,780,'4','fontsize',8,'fontname','Arial','fontweight','bold')
+text(0.4,780,'4''','fontsize',8,'fontname','Arial','fontweight','bold')
 ylim([700 2200]);
 %text(dist_bigblack_track4-0.04,-50,'115 ka','fontsize',8,'fontname','Arial','rotation',30);
 %text(dist_bit16_track4-0.04,-50,'205 ka','fontsize',8,'fontname','Arial','rotation',30);
@@ -375,7 +375,7 @@ set(gca,'fontsize',8,'fontname','arial')
 set(gca,'xtick',[0:4:16])
 set(gca,'ticklength',[0.02,0.05])
 set(gca,'xticklabel',[])
-text(0.3,2130,'b','fontsize',10,'fontname','arial','fontweight','bold');
+text(0.25,2135,'b','fontsize',10,'fontname','arial','fontweight','bold');
 export_fig(fullfile(REPO_HOME,'figures/track4_overview.pdf'),'-painters','-r600');
 close;
 
@@ -394,17 +394,17 @@ hold on;
 cm = cubehelix(20,1.0,-1.5,1,1,[0.2,0.8],[0.2,0.85]);
 for i=1:size(track4.layages,1)
     if ~isnan(track4.layages(i))
-      plot(track4.Distance_total4_all/1e3,track4.Height4_all'-track4.layheights(i,:),...
+      plot(track4.Distance_total4_all(end)/1e3-track4.Distance_total4_all/1e3,track4.Height4_all'-track4.layheights(i,:),...
         'linewidth',1.5,'color',cm(round((track4.layages(i)-80)/10),:));
       %plot([dists_layers_outcropping_track4(i,1)/1e3,dists_layers_outcropping_track4(i,3)/1e3],...
       %   [dists_layers_outcropping_track4(i,2),0],'--','linewidth',2,'color',cm(round((track4.layages(i)-80)/10),:));
     end
 end
-plot(track4.Distance_total4_all(1:length(track4.thick))/1e3,track4.Height4_all-track4.thick,'k:','linewidth',1.5);
+plot(track4.Distance_total4_all(end)/1e3-track4.Distance_total4_all(1:length(track4.thick))/1e3,track4.Height4_all-track4.thick,'k:','linewidth',1.5);
 xlabel('Distance (km)','fontsize',8,'fontname','Arial')
 ylabel('Elevation (m)','fontsize',8,'fontname','Arial');
-text(0.4,780,'4','fontsize',8,'fontname','Arial','fontweight','bold')
-text(13.8,780,'4''','fontsize',8,'fontname','Arial','fontweight','bold')
+text(13.8,780,'4','fontsize',8,'fontname','Arial','fontweight','bold')
+text(0.4,780,'4''','fontsize',8,'fontname','Arial','fontweight','bold')
 ylim([700 2200]);
 colormap(gca,cm); set(gca,'clim',[80 260]); 
 h = colorbar('southoutside'); 
@@ -420,7 +420,7 @@ set(gca,'pos',[pos(1) pos(2)+0.18 pos(3)+0.01 pos(4)-0.175]);
 set(gca,'fontsize',8,'fontname','arial')
 set(gca,'xtick',[0:4:16])
 set(gca,'ticklength',[0.02,0.05])
-text(0.3,2130,'c','fontsize',10,'fontname','arial','fontweight','bold');
+text(0.25,2135,'c','fontsize',10,'fontname','arial','fontweight','bold');
 export_fig(fullfile(REPO_HOME,'figures/track4_ages.pdf'),'-painters','-r600');
 close;
 
@@ -1429,7 +1429,7 @@ for i=1:size(labels_cores,1)
     h(2) = plot(labels_cores_xy(i,1),labels_cores_xy(i,2),'ko','markerfacecolor','r','markersize',4);
 end
 text(labels_cores_xy(1,1)-2900,labels_cores_xy(1,2),labels_cores(1,:),'fontsize',8,'fontname','Arial');
-text(labels_cores_xy(2,1)-2000,labels_cores_xy(2,2)+500,labels_cores(2,:),'fontsize',8,'fontname','Arial');
+text(labels_cores_xy(2,1)-1700,labels_cores_xy(2,2),labels_cores(2,:),'fontsize',8,'fontname','Arial');
 %plot(S27_surface_core_loc(:,1),S27_surface_core_loc(:,2),'kd','markerfacecolor','k');
 axis('equal')
 set(gca,'xtick',[5.0e5,5.05e5,5.10e5,5.15e5,5.2e5],'xticklabel',[500,505,510,515,520])
